@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  notebooks:
+    build:
+      context: ${DOCKER_ROOT}
+      dockerfile: notebooks.Dockerfile
+    init: true
+    environment:
+      - NOOP=NOOP
+      # See https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
+      # JUPYTER_ENABLE_LAB=yes Instructs the startup script to run jupyter lab instead of the default jupyter notebook command.
+      #- JUPYTER_ENABLE_LAB=yes
+      # RESTARTABLE=yes - Runs Jupyter in a loop so that quitting Jupyter does not cause the container to exit. This may be useful when you need to install extensions that require restarting Jupyter.
+      #- RESTARTABLE=yes
+      # sudo is available: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/recipes.html#using-sudo-within-a-container
+      #- GRANT_SUDO=yes
+      - SNOWFLAKE_URL=${SNOWFLAKE_URL}
+      - SNOWFLAKE_ROLE=${SNOWFLAKE_ROLE}
+      - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
+      - SNOWFLAKE_USER=${SNOWFLAKE_USER}
+      - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
+      - SNOWFLAKE_PRIVATE_KEY_PASSPHRASE=${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
+    volumes:
+      # for our workspace data (e.g. notebooks)
+      - "../:/home/jovyan/work"
+      # for libraries and other executable scripts:
+      #- "../docker-lib/:/docker-lib"
+      # Public/private keys for Snowflake's Key Pair Auth: https://docs.snowflake.com/en/user-guide/python-connector-example.html#using-key-pair-authentication
+      - "../snowflake-key-pair/:/snowflake-key-pair"
+    ports:
+      - "8888:8888"

@@ -1,0 +1,13 @@
+**/*.jic
+snowsql_rt.log
+snowsql_rt.log_bootstrap
+.cache/
+.ipython/
+.env
+.jupyter/
+.local/
+**/.ipynb_checkpoints/
+**/*.pyc
+snowflake-key-pair/rsa_key.p8
+snowflake-key-pair/rsa_key.pub
+snowman-python-lib/src/dist/*.whl
