@@ -23,7 +23,7 @@ services:
       - SNOWFLAKE_PRIVATE_KEY_PASSPHRASE=${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
     volumes:
       # for our workspace data (e.g. notebooks)
-      - "../:/home/jovyan/work"
+      - "../notebooks:/home/jovyan"
       # for libraries and other executable scripts:
       #- "../docker-lib/:/docker-lib"
       # Public/private keys for Snowflake's Key Pair Auth: https://docs.snowflake.com/en/user-guide/python-connector-example.html#using-key-pair-authentication
