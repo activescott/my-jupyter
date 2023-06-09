@@ -37,7 +37,7 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'snowflake-connector-python==2.8.3',
+        'snowflake-connector-python==3.0.2',
         'cryptography>=38.0.4'
     ],
 
