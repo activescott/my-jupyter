@@ -7,6 +7,7 @@ services:
       dockerfile: notebooks.Dockerfile
     init: true
     environment:
+      # NOTE: the items here generlaly will need to be in a .env file too
       - NOOP=NOOP
       # See https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
       # JUPYTER_ENABLE_LAB=yes Instructs the startup script to run jupyter lab instead of the default jupyter notebook command.
@@ -15,6 +16,9 @@ services:
       #- RESTARTABLE=yes
       # sudo is available: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/recipes.html#using-sudo-within-a-container
       #- GRANT_SUDO=yes
+      #
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      #
       - SNOWFLAKE_URL=${SNOWFLAKE_URL}
       - SNOWFLAKE_ROLE=${SNOWFLAKE_ROLE}
       - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
